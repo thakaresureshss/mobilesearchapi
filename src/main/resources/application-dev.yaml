@@ -1,0 +1,39 @@
+logging:
+   level:
+      liquibase: info
+      org.springframework.web: INFO
+      org.springframework.security: DEBUG
+      com.example: DEBUG
+   file: app.log
+spring:
+   profiles:
+      active: dev
+   jpa:
+      show-sql: true
+      hibernate:
+         ddl-auto: none
+      properties:
+         dialect: org.hibernate.dialect.MySQL5Dialect
+   liquibase:
+      enabled: true
+      changeLog: classpath:config/liquibase/changelog-master.xml
+   data:
+      jpa:
+         repositories.enabled: true
+   datasource:
+      type: com.zaxxer.hikari.HikariDataSource
+      hikari:
+         pool-name: mobilesearch-pool
+         maximum-pool-size: 20
+         max-lifetime: 1800000
+         idle-timeout: 30000
+      url: jdbc:mysql://localhost:3306/mobilesearch
+      username: root
+      password: null
+      driver-class-name: com.mysql.jdbc.Driver
+   messages:
+      basename: i18/messages
+jwt:
+   token:
+      secret: secret
+      validity: 3600000
